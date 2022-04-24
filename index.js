@@ -73,8 +73,27 @@ app.get('/fetch_admin', (req, res) => {
 
 });
 
+app.post('/login_admin', (req, res) => {
+    let adminemail = "adminemail";
+    let adminpassword = "adminpassword";
+
+    var fetchData =  "SELECT * FROM admin WHERE adminemail ="+
+        mysql.escape(req.body.adminemail)  +" AND adminpassword="+
+        mysql.escape(req.body.adminpassword);
+    db.query(fetchData, (err, result) => {
+        if (err) throw err
+
+        console.log(result);
+
+        res.send(
+            result
+        );
+    })
+
+});
+
 
 
 //create connection
 const PORT = process.env.PORT || 3000
-app.listen(PORT, "192.168.137.109",() => console.log(`Server is running at port ${PORT}`))
+app.listen(PORT, "127.0.0.1",() => console.log(`Server is running at port ${PORT}`))
