@@ -92,6 +92,37 @@ app.post('/login_admin', (req, res) => {
 
 });
 
+let array = [1,3,6,4,1,2];
+//let array = [-1, -3];
+let soln = algo(array);
+console.log(soln);
+function algo(array){
+array.sort();
+
+// for(let i=0;i<array.length;i++){
+//     console.log(array[i]);
+//     }
+
+let smallestValue = array[0];
+let largestValue = array[array.length-1];
+
+    for(let i=smallestValue;i<largestValue+1;i++){
+        console.log(` i: ${i}`);
+        if (!array.includes(i)){
+            if(i<0){
+                return 1;
+            }
+            return  i;
+        }
+    }
+
+    if (smallestValue === 1) {
+        return largestValue + 1;
+    } else if (smallestValue < 1) {
+        return 1;
+    }
+
+}
 
 
 //create connection
